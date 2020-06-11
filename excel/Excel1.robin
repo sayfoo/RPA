@@ -1,0 +1,32 @@
+Excel.LaunchAndOpen         Path:  "C:\Users\heine\Desktop\Robin\BlankTest.xlsx" \
+                            Visible:True \
+                            Password:'' \
+                            ReadOnly:False \
+                            LoadAddInsAndMacros:False \
+                            Instance=> ExcelInstance
+
+wait 1
+
+
+Excel.GetFirstFreeColumnRow Instance:  ExcelInstance \
+                            FirstFreeColumn=> FirstFreeColumn \
+                            FirstFreeRow=> FirstFreeRow
+
+Excel.ReadCells             Instance:  ExcelInstance \
+                            StartColumn:  1\
+                            StartRow:  1\
+                            EndColumn:  FirstFreeColumn-1 \
+                            EndRow:  FirstFreeRow -1\
+                            ReadAsText:False \
+                            FirstLineIsHeader:True \
+                            Value=> Value 
+
+
+wait 3
+
+
+Console.Write               Message: "The number of rows containing data is " + Value.rows.count
+
+Console.Write               Message: "The first free row is " + FirstFreeRow
+
+Excel.Close                 Instance: ExcelInstance
