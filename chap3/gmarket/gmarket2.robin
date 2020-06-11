@@ -1,0 +1,28 @@
+import ".\gmarketApp1.appmask"
+
+
+WebAutomation.LaunchChrome          Url:  "https://www.gmarket.co.kr" \
+                                    WindowState:WebAutomation.BrowserWindowState.Maximized \
+                                    ClearCache:true \
+                                    ClearCookies:False \
+                                    BrowserInstance=> Browser
+
+wait 3
+
+
+
+
+WebAutomation.FormFilling.PopulateTextField     BrowserInstance:  Browser \
+                                    Control: gmarketApp1.gmarket.Web_Page_https_www_gmarket_co_kr.input_text_form_input \
+                                    Text:  "ncl77"\
+                                    EmulateTyping:True \
+                                    UnfocusAfterPopulate:False
+
+wait 3
+
+
+WebAutomation.FormFilling.PressButton           BrowserInstance: Browser \
+                                    Control: gmarketApp1.gmarket.Web_Page_https_www_gmarket_co_kr.img_image
+wait 5
+
+WebAutomation.CloseWebBrowser       BrowserInstance: Browser

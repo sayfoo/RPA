@@ -1,0 +1,4 @@
+#DateTime.Current DateTimeFormat:DateTimeFormat.DateAndTime Offset:'0' CurrentDateTime=> CurrentDateTime
+DateTime.Current CurrentDateTime=> CurrentDateTime
+#Display.ShowMessage Title:'This is the Current Time and Date' Message:CurrentDateTime ButtonPressed=> ButtonPressed
+Display.ShowMessage Title:'This is the Current Time and Date' Message:CurrentDateTime Icon:Icon.None Buttons:Buttons.OK DefaultButton:DefaultButton.Button1 IsTopMost:False ButtonPressed=> ButtonPressed

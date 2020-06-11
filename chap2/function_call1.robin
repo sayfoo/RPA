@@ -1,0 +1,24 @@
+# Warming Up
+
+set greetings1 to 'Good Morning!'
+set greetings2 to 'Hello RPA World!'
+
+
+#Console.Write       Message: greetings1
+#Console.Write       Message: greetings2
+
+#
+call good_morning
+call hello_world
+
+wait 1
+
+# function 1 : 
+function good_morning
+    Console.Write       Message: greetings1
+end
+
+# function 2 : 
+function hello_world
+    Console.Write       Message: greetings2
+end

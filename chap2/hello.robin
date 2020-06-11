@@ -1,0 +1,4 @@
+
+set message to "Hello RPA world!"
+
+Console.Write Message: message

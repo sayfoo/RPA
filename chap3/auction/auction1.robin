@@ -1,0 +1,49 @@
+# auction
+
+import "auctionApp.appmask"
+
+
+WebAutomation.LaunchChrome          Url:  "http://auction.co.kr" \
+                                    WindowState:WebAutomation.BrowserWindowState.Maximized \
+                                    ClearCache:true \
+                                    ClearCookies:False \
+                                    BrowserInstance=> Browser
+
+wait 1
+
+WebAutomation.FormFilling.PopulateTextField     BrowserInstance:  Browser \
+                                    Control: auctionApp.auction.Web_Page_http_www_auction_co_kr.input_text_txtKeyword \
+                                    Text:  "ncl77" \
+                                    EmulateTyping:True \
+                                    UnfocusAfterPopulate:False
+
+wait 1
+
+
+WebAutomation.FormFilling.PressButton           BrowserInstance: Browser \
+                                    Control: auctionApp.auction.Web_Page_http_www_auction_co_kr.input_submit_search_btn_ok
+wait 1
+
+
+
+WebAutomation.DataExtraction.GetDetailsOfElement   BrowserInstance:  Browser \
+ Control: auctionApp.auction.Web_Page_http_browse_auction_co_kr_search_keyword_ncl77_itemno_nickname_frm_hometab_dom_auction_isSuggestion_No_retry_Fwk_ncl77_acode_SRP_SU.strong_text_price_seller \
+                                    AttributeName:  'innerText' \
+                                    AttributeValue=> AttributeValue1
+                                    
+
+WebAutomation.DataExtraction.GetDetailsOfElement   BrowserInstance:  Browser \
+ Control: auctionApp.auction.Web_Page_http_browse_auction_co_kr_search_keyword_ncl77_itemno_nickname_frm_hometab_dom_auction_isSuggestion_No_retry_Fwk_ncl77_acode_SRP_SU.span_text \
+                                    AttributeName:  'innerText' \
+                                    AttributeValue=> AttributeValue2
+
+
+Console.Write                       Message: AttributeValue1
+Console.Write                       Message: AttributeValue2
+
+wait 1
+
+
+WebAutomation.CloseWebBrowser       BrowserInstance: Browser
+
+

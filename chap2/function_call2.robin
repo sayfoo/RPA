@@ -1,0 +1,12 @@
+# Call function with passing parameter
+
+set value1 to 10
+set value2 to 5
+
+function addition num1, num2
+    set total to num1 + num2
+    
+    Console.Write       Message: total
+end
+
+call addition num1:value1 num2:value2

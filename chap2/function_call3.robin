@@ -1,0 +1,15 @@
+# Call function with passing parameter
+
+set value1 to 10
+set value2 to 5
+
+function addition num1, num2, output total, output difference
+    set total to num1 + num2
+    set difference to num1 - num2
+end
+
+
+call addition num1:value1 num2:value2 total=>output1 difference=>output2
+
+Console.Write       Message: output1
+Console.Write       Message: output2

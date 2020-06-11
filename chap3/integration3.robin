@@ -1,0 +1,54 @@
+# Data Table
+
+set prices to {^['Name','Price'],['St', 0], ['Gmarket', 0], ['Auction', 0] }
+
+
+#Console.Write Message: 'Min Value: '+ prices[1]
+
+#Console.Write Message: 'Min Value: '+ prices[1][1]
+
+#set prices to [0,0,0]
+
+
+function st_price output value
+
+    set value to 35000
+    
+end
+
+function gmarket_price output value
+
+    set value to 10000
+    
+end
+
+function auction_price output value
+
+    set value to 23000
+    
+end
+
+
+call    st_price    value=>value
+#Console.Write Message: 'Value1: '+ value
+
+set prices[0][1] to value
+#Console.Write Message: 'Value1: '+ prices[0]
+
+call    gmarket_price   value=>value
+
+set prices[1][1] to value
+#Console.Write Message: 'Value1: '+ prices[1]
+
+call    auction_price   value=>value
+
+set prices[2][1] to value
+
+#Console.Write Message: 'Value1: '+ prices[2]
+
+
+Variables.SortList List: prices SortedList=> prices
+
+Console.Write Message: 'Min Value: '+ prices[0][0]
+Console.Write Message: 'Min Value: '+ prices[0][1]
+Console.Write Message: 'Min Value: '+ prices[0][2]

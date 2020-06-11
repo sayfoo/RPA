@@ -1,0 +1,9 @@
+# Warming Up
+
+set greetings to 'Hello RPA World!'
+
+
+Console.Write       Message: greetings
+
+
+wait 3

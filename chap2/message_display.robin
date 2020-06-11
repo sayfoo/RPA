@@ -1,0 +1,15 @@
+#Module.Action InputParameter1:'Value1' InputParameter2:'Value2' OutputParameter=> OutputVariable
+#Display.InputDialog Title:'' Message:'' DefaultValue:'' InputType:InputType.SingleLine IsTopMost:False UserInput=> UserInput ButtonPressed=> ButtonPressed
+#Folder.GetFiles Folder:  FileFilter:'*'  Files=> Files
+#set foldervar to Files[0]
+#Folder.GetSubfolders Folder: 'C:\Users'  FolderFilter:'*' IncludeSubfolders:False  Subfolders=> Subfolders
+#set foldervar to Subfolders[0]
+#function today
+#    DateTime.Current DateTimeFormat:DateTimeFormat.DateAndTime Offset:'0' CurrentDateTime=> CurrentDateTime
+#end
+#call today
+#DateTime.Current DateTimeFormat:DateTimeFormat.DateAndTime Offset:'0' CurrentDateTime=> JSTime
+#Display.ShowMessage Title:'This is the Current Time and Date' Message:JSTime Icon:Icon.None Buttons:Buttons.OK DefaultButton:DefaultButton.Button1 IsTopMost:False ButtonPressed=> JSButton
+
+Display.InputDialog Title:'' Message:'' DefaultValue:'' InputType:InputType.SingleLine IsTopMost:False UserInput=> UserInput ButtonPressed=> ButtonPressed
+Display.ShowMessage Title:'This is the Current Time and Date' Message:UserInput ButtonPressed=> ButtonPressed

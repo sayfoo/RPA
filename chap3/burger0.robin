@@ -1,0 +1,56 @@
+# This works without an appmask.
+# Thanks, @jokoum!!!!!!!!!!
+WebAutomation.LaunchChrome              Url:  "https://www.amazon.com" \
+                                        WindowState:WebAutomation.BrowserWindowState.Maximized \
+                                        ClearCache:false \
+                                        ClearCookies:False \
+                                        BrowserInstance=> Browser
+
+WebAutomation.Click                     BrowserInstance:  Browser \
+                                        Control: 'domcontainer{<{<{<SelectorSeparator>}>}>}uia3:// #nav-hamburger-menu' 
+
+wait 1
+
+
+MouseAndKeyboard.MoveMouse  X: 30 Y: 155 \
+                                    RelativeTo: MouseAndKeyboard.PositionRelativeTo.Screen \
+                                    MovementStyle:MouseAndKeyboard.MovementStyle.Instant
+
+
+/#
+
+
+MouseAndKeyboard.MoveMouse              X: 30 Y: 155 \
+                                        RelativeTo: MouseAndKeyboard.PositionRelativeTo.Screen \
+                                        MovementStyle: MouseAndKeyboard.MovementStyle.Instant
+#/ 
+wait 5
+
+WebAutomation.CloseWebBrowser           BrowserInstance: Browser
+
+# Thanks a million to @jokoum for 'domcontainer{<{<{<SelectorSeparator>}>}>}uia3:// #myFrame'\ 
+# from another post
+# which I have shamelessly pilfered.# This works without an appmask.
+# Thanks, @jokoum!!!!!!!!!!
+WebAutomation.LaunchChrome              Url:  "https://www.amazon.com" \
+                                        WindowState:WebAutomation.BrowserWindowState.Maximized \
+                                        ClearCache:false \
+                                        ClearCookies:False \
+                                        BrowserInstance=> Browser
+
+WebAutomation.Click                     BrowserInstance:  Browser \
+                                        Control: 'domcontainer{<{<{<SelectorSeparator>}>}>}uia3:// #nav-hamburger-menu' 
+
+wait 1
+
+MouseAndKeyboard.MoveMouse              X: 30 Y: 155 \
+                                        RelativeTo:MouseAndKeyboard.MousePositionRelativeTo.Screen \
+                                        MovementStyle:MouseAndKeyboard.MouseMovementStyle.Instant
+
+wait 5
+
+WebAutomation.CloseWebBrowser           BrowserInstance: Browser
+
+# Thanks a million to @jokoum for 'domcontainer{<{<{<SelectorSeparator>}>}>}uia3:// #myFrame'\ 
+# from another post
+# which I have shamelessly pilfered.

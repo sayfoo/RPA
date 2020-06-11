@@ -1,0 +1,44 @@
+# The appmask contains the main screen and a control for 'the hamburger menu.'
+# As my attempts to activate it with WebAutomation.Click failed (the control just turns yellow),
+# and as JS attempts with "document.GetElementById('nav-hamburger-menu');" failed, although
+# this method works fine from the Chrome developer console,
+# I have tried to duplicate user interaction with the browser instead.
+# N.B.: My DPI scaling is set at 125% on Windows 7 for this automation.
+#import                                  ".\wimpy.appmask"
+
+set value to 0
+set price_list to [200, 300, 150, 50, 500]
+
+
+function list_values input_list, output value
+
+#    set SumTotal to 0
+#    set SumWithoutDuplicates to 0
+    set MinValue to 0
+    set MaxValue to 0
+    
+    Variables.SortList List: input_list SortedList=> SortedList
+    
+    set ListLength to   SortedList.count 
+    set MinValue to SortedList[0]
+    set MaxValue to SortedList[ListLength -1]
+    
+    set value to MinValue
+
+    Console.Write Message: 'Min Value: '+ SortedList[0]
+    Console.Write Message: 'Max Value: '+ SortedList[ListLength-1]
+    
+    
+
+end
+
+
+call list_values input_list:price_list value=>value
+
+Console.Write Message: value
+
+
+wait 3
+
+# Automation ends
+#WebAutomation.CloseWebBrowser           BrowserInstance: Browser

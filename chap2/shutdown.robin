@@ -1,0 +1,2 @@
+
+System.ShutdownComputer ShutdownOption:System.ShutdownOption.Shutdown Force:False

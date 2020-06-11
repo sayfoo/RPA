@@ -1,0 +1,58 @@
+# 11st
+
+import "stApp.appmask"
+
+
+WebAutomation.LaunchChrome          Url:  "https://www.11st.co.kr/html/main.html" \
+                                    WindowState:WebAutomation.BrowserWindowState.Maximized \
+                                    ClearCache:true \
+                                    ClearCookies:False \
+                                    BrowserInstance=> Browser
+
+wait 1
+
+WebAutomation.Click BrowserInstance: Browser Control: stApp.st.Web_Page_https_www_11st_co_kr_html_main_html.input_text_AKCKwd_1
+
+wait 1
+WebAutomation.FormFilling.PopulateTextField     BrowserInstance:  Browser \
+                                    Control: stApp.st.Web_Page_https_www_11st_co_kr_html_main_html.input_text_AKCKwd_1 \
+                                    Text:  "ncl77"\
+                                    EmulateTyping: True \
+                                    UnfocusAfterPopulate: False
+
+
+
+
+wait 1
+/#
+UIAutomation.Click Element:stApp.st.Web_Page_https_www_11st_co_kr_html_main_html.button_gnbTxtAd \
+  ClickType:ClickType.LeftClick MousePositionRelativeToElement:RectangleEdgePoint.MiddleCenter OffsetX:0 OffsetY:0
+
+#/
+WebAutomation.Click BrowserInstance: Browser Control: stApp.st.Web_Page_https_www_11st_co_kr_html_main_html.button_gnbTxtAd
+
+
+
+
+WebAutomation.FormFilling.PressButton           BrowserInstance: Browser \
+                                    Control: stApp.st.Web_Page_https_www_11st_co_kr_html_main_html.button_gnbTxtAd
+wait 3
+
+WebAutomation.DataExtraction.GetDetailsOfElement   BrowserInstance:  Browser \
+                Control: stApp.st.Web_Page_http_search_11st_co_kr_Search_tmall_kwd_ncl77_1.span_value \
+                                    AttributeName:  'innerText' \
+                                    AttributeValue=> AttributeValue1
+
+WebAutomation.DataExtraction.GetDetailsOfElement   BrowserInstance:  Browser \
+                Control: stApp.st.Web_Page_http_search_11st_co_kr_Search_tmall_kwd_ncl77_1.span_name \
+                                    AttributeName:  'innerText' \
+                                    AttributeValue=> AttributeValue2
+
+Console.Write                       Message: AttributeValue1
+Console.Write                       Message: AttributeValue2
+
+
+wait 1
+
+
+WebAutomation.CloseWebBrowser       BrowserInstance: Browser

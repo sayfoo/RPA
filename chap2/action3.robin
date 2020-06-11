@@ -1,0 +1,22 @@
+# Action example 1
+#
+# Module.Action InputParameter1:'Value1' InputParameter2:'Value2' OutputParameter=> OutputVariable
+#
+#
+
+/#
+
+
+set greetings to 'Hello RPA World!'
+
+Console.Write       Message: greetings
+
+wait 3
+#/
+
+
+WebAutomation.LaunchChrome Url: 'https://www.naver.com/' WindowState:WebAutomation.BrowserWindowState.Normal \
+ ClearCache:False ClearCookies:False BrowserInstance=> Browser
+  on error repeat 2 times wait 1 
+end
+

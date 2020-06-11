@@ -1,0 +1,69 @@
+# The appmask contains the main screen and a control for 'the hamburger menu.'
+# As my attempts to activate it with WebAutomation.Click failed (the control just turns yellow),
+# and as JS attempts with "document.GetElementById('nav-hamburger-menu');" failed, although
+# this method works fine from the Chrome developer console,
+# I have tried to duplicate user interaction with the browser instead.
+# N.B.: My DPI scaling is set at 125% on Windows 7 for this automation.
+import                                  ".\wimpy.appmask"
+
+
+# Launch Chrome and navigate to Amazon
+WebAutomation.LaunchChrome              Url:  "https://www.amazon.com" \
+                                        WindowState:WebAutomation.BrowserWindowState.Maximized \
+                                        ClearCache:false \
+                                        ClearCookies:False \
+                                        BrowserInstance=> Browser
+
+# I don't want to interfere with the automation by accident, so I block input
+MouseAndKeyboard.BlockInput             BlockIt: true
+
+# This delay may actually be excessive; I use it out of caution
+wait 2
+
+# This step appears to be necessary. I might be able to focus or hover as well.
+# I will try both of those at a later date. At any rate, this sets the 
+# hamburger menu to a state where hovering will activate it.
+WebAutomation.Click                     BrowserInstance:  Browser \
+                                        Control: wimpy.AmazonMain.BurgerMenu
+
+# I used a WindowSpy tool from AutoHotkey to determine the 
+# window position of controls for the rest of the automation.
+# This moves the mouse to the hamburger menu, which is now ready to accept input.
+MouseAndKeyboard.MoveMouse              X: 15 Y: 150 \
+                                        RelativeTo:MouseAndKeyboard.MousePositionRelativeTo.Screen \
+                                        MovementStyle:MouseAndKeyboard.MouseMovementStyle.Instant
+
+# Here's a delay to allow the menu to slide out.
+wait 1
+
+############# NOTE ###########################################################################
+# If you want to sign in here, you can leave the mouse coordinates as as                     #
+# and click. I've tried it, and it works just fine. You'll probably need                     #
+# to experiment with some delays.                                                            #
+# I won't be doing that here - I'll just go shopping from the hamburger menu.                #
+##############################################################################################
+
+# In the next two steps, I move to the 'Clothing' item of the hamburger menu's dropdown
+MouseAndKeyboard.MoveMouse              X: 190 Y: 665 \
+                                        RelativeTo:MouseAndKeyboard.MousePositionRelativeTo.Screen \
+                                        MovementStyle:MouseAndKeyboard.MouseMovementStyle.Instant
+
+MouseAndKeyboard.Click                  ClickType:MouseAndKeyboard.MouseClickType.LeftClick \
+                                        MillisecondsDelay:300
+
+# A delay for page loading
+wait 0.5
+
+# Now I move to the 'Men' item, and click.
+MouseAndKeyboard.MoveMouse              X: 190 Y: 450 \
+                                        RelativeTo:MouseAndKeyboard.MousePositionRelativeTo.Screen \
+                                        MovementStyle:MouseAndKeyboard.MouseMovementStyle.Instant
+
+MouseAndKeyboard.Click                  ClickType:MouseAndKeyboard.MouseClickType.LeftClick \
+                                        MillisecondsDelay:300
+
+# This delay is merely to demonstrate that the automation works.
+wait 5
+
+# Automation ends
+WebAutomation.CloseWebBrowser           BrowserInstance: Browser
