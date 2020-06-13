@@ -1,0 +1,42 @@
+import ".\amazonappmask.appmask"
+
+
+WebAutomation.LaunchChrome          Url:  "https://www.amazon.in/gp/goldbox" \
+                                    WindowState:WebAutomation.BrowserWindowState.Maximized \
+                                    ClearCache:true \
+                                    ClearCookies:False \
+                                    BrowserInstance=> Browser
+
+wait 3
+
+WebAutomation.FormFilling.PopulateTextField     BrowserInstance:  Browser \
+                                    Control:  amazonappmask.New_Application.web_page.input_text \
+                                    Text:  "Samsung M30s"\
+                                    EmulateTyping:True \
+                                    UnfocusAfterPopulate:False
+
+
+wait 0.2
+
+
+
+
+WebAutomation.FormFilling.PressButton           BrowserInstance: Browser \
+                                    Control: amazonappmask.New_Application.web_page.search_button
+
+wait 3
+
+WebAutomation.DataExtraction.GetDetailsOfElement   BrowserInstance:  Browser Control: amazonappmask.New_Application.Samsung_A30.phone \
+                                    AttributeName:  'innerText' \
+                                    AttributeValue=> AttributeValue1
+
+WebAutomation.DataExtraction.GetDetailsOfElement   BrowserInstance:  Browser Control: amazonappmask.New_Application.Samsung_A30.price \
+                                    AttributeName:  'innerText' \
+                                    AttributeValue=> AttributeValue2
+
+Console.Write                       Message: AttributeValue1
+Console.Write                       Message: AttributeValue2
+
+wait 4
+
+WebAutomation.CloseWebBrowser       BrowserInstance: Browser
