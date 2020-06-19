@@ -1,0 +1,44 @@
+# Step 1
+# Step 2
+# Step 3
+# Step 4
+# Step 5
+
+
+Excel.LaunchAndOpen                     Path:  "C:\Users\heine\Desktop\sheet1.xlsx" \
+                                        Visible:True \
+                                        Password:'' \
+                                        ReadOnly:False \
+                                        LoadAddInsAndMacros:False \
+                                        Instance=> ExcelInstance1
+
+wait 1
+
+Excel.LaunchAndOpen                     Path:  "C:\Users\heine\Desktop\RPA교재1\chap4\text2.xlsx" \
+                                        Visible:True \
+                                        Password:'' \
+                                        ReadOnly:False \
+                                        LoadAddInsAndMacros:False \
+                                        Instance=> ExcelInstance2
+
+wait 1
+
+Excel.GetFirstFreeColumnRow Instance: ExcelInstance1 FirstFreeColumn=> FirstFreeColumn FirstFreeRow=> FirstFreeRow
+
+Excel.ReadCells Instance: ExcelInstance1 StartColumn: "A" StartRow: 1 EndColumn: FirstFreeColumn EndRow: FirstFreeRow \
+                            ReadAsText:False FirstLineIsHeader:False Value=> Value
+
+
+Console.Write Message: Value.columns.count
+Console.Write Message: Value.rows.count
+
+
+set value1 to Value[3][12]
+
+Console.Write Message: value1
+
+Excel.WriteCell Instance: ExcelInstance1 Value: value1 Column: "B" Row: 11  # Column: 2
+
+Excel.CloseAndSave Instance: ExcelInstance1
+Excel.Close Instance: ExcelInstance2
+

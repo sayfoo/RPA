@@ -1,0 +1,31 @@
+# Step 1
+# Step 2
+# Step 3
+# Step 4
+# Step 5
+
+set value1 to ""
+
+Excel.LaunchAndOpen                     Path:  "C:\Users\heine\Desktop\sheet1.xlsx" \
+                                        Visible:True \
+                                        Password:'' \
+                                        ReadOnly:False \
+                                        LoadAddInsAndMacros:False \
+                                        Instance=> ExcelInstance1
+
+wait 1
+
+Excel.GetFirstFreeColumnRow Instance: ExcelInstance1 FirstFreeColumn=> FirstFreeColumn FirstFreeRow=> FirstFreeRow
+
+Excel.ReadCells Instance: ExcelInstance1 StartColumn: "A" StartRow: 1 EndColumn: FirstFreeColumn EndRow: FirstFreeRow \
+                            ReadAsText:False FirstLineIsHeader:False Value=> Value
+
+
+Console.Write Message: Value.columns.count
+Console.Write Message: Value.rows.count
+Console.Write Message: ""
+Console.Write Message: Value
+
+
+Excel.Close Instance: ExcelInstance1
+

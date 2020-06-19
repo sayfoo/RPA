@@ -1,0 +1,50 @@
+# 
+# 
+#   Joon Soo Jeong / Ph.D.
+#   heinem@naver.com
+#   
+#   Copy Right 2020
+
+
+
+Excel.LaunchAndOpen                     Path:  "C:\Users\heine\Desktop\RPA교재1\chap4\text2.xlsx" \
+                                        Visible:True \
+                                        Password:'' \
+                                        ReadOnly:False \
+                                        LoadAddInsAndMacros:False \
+                                        Instance=> ExcelInstance2
+
+wait 1
+
+Excel.LaunchAndOpen                     Path:  "C:\Users\heine\Desktop\sheet1.xlsx" \
+                                        Visible:True \
+                                        Password:'' \
+                                        ReadOnly:False \
+                                        LoadAddInsAndMacros:False \
+                                        Instance=> ExcelInstance1
+                                        
+wait 1
+
+Excel.GetFirstFreeColumnRow Instance: ExcelInstance1 FirstFreeColumn=> FirstFreeColumn FirstFreeRow=> FirstFreeRow
+
+Excel.ReadCells Instance: ExcelInstance2 StartColumn: "A" StartRow: 2 EndColumn: "D" EndRow: 2 \
+                            ReadAsText:False FirstLineIsHeader:False Value=> Value
+
+
+Console.Write Message: Value
+Console.Write Message: Value[0][0]
+Console.Write Message: Value[0][1]
+Console.Write Message: Value[0][2]
+Console.Write Message: Value[0][3]
+
+Excel.WriteCell Instance: ExcelInstance1 Value: Value[0][0] Column: "B" Row: 9  # Column: 2
+Excel.WriteCell Instance: ExcelInstance1 Value: Value[0][1] Column: "K" Row: 9  # Column: 2
+Excel.WriteCell Instance: ExcelInstance1 Value: Value[0][2] Column: "L" Row: 9  # Column: 2
+Excel.WriteCell Instance: ExcelInstance1 Value: Value[0][3] Column: "M" Row: 9  # Column: 2
+
+wait 2
+
+
+Excel.CloseAndSave Instance: ExcelInstance1
+Excel.Close Instance: ExcelInstance2
+

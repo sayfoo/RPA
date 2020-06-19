@@ -1,0 +1,74 @@
+# Step 1
+# Step 2
+# Step 3
+# Step 4
+# Step 5
+
+
+set product to ""
+set unit    to ""
+set counts  to 0
+set unit_price to 0
+
+set dimension_x to 0
+set dimension_y to 0
+
+
+Excel.LaunchAndOpen                     Path:  "C:\Users\heine\Desktop\sheet1.xlsx" \
+                                        Visible:True \
+                                        Password:'' \
+                                        ReadOnly:False \
+                                        LoadAddInsAndMacros:False \
+                                        Instance=> ExcelInstance1
+
+wait 1
+
+Excel.GetFirstFreeColumnRow Instance: ExcelInstance1 FirstFreeColumn=> dimension_x FirstFreeRow=> dimension_y
+
+
+Console.Write Message: dimension_x
+Console.Write Message: dimension_y
+
+/#
+
+
+Excel.ReadCell                          Instance: ExcelInstance \
+                                        StartColumn:  "A" \
+                                        StartRow:  1 \
+                                        ReadAsText:True \
+                                        Value=> Value
+
+
+
+Excel.LaunchAndOpen                     Path:  "C:\Users\heine\Desktop\RPA교재1\chap4\text4.xlsx" \
+                                        Visible:True \
+                                        Password:'' \
+                                        ReadOnly:False \
+                                        LoadAddInsAndMacros:False \
+                                        Instance=> ExcelInstance
+
+wait 1
+
+Excel.GetFirstFreeColumnRow Instance: ExcelInstance FirstFreeColumn=> FirstFreeColumn FirstFreeRow=> FirstFreeRow
+
+#Excel.ReadCells Instance: ExcelInstance StartColumn: "A" StartRow: 1 EndColumn: "B" EndRow: 5 ReadAsText:False FirstLineIsHeader:False Value=> Value1
+Excel.ReadCells Instance: ExcelInstance StartColumn: "A" StartRow: 1 EndColumn: FirstFreeColumn EndRow: FirstFreeRow \
+                            ReadAsText:False FirstLineIsHeader:False Value=> Value
+
+
+                                   
+Console.Write Message: Value.rows.count
+Console.Write Message: Value.columns.count
+
+Console.Write Message: Value[0][0]
+
+if Value[0][0]+"" = TextToLocate then
+    Console.Write Message: "They are equal."
+else if Value[0][0]+"" != TextToLocate then
+    Console.Write Message: "They are not equal."
+end
+
+#/
+
+Excel.Close Instance: ExcelInstance1
+
